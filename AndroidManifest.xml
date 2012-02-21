@@ -21,6 +21,8 @@
             </intent-filter>
         </activity>
 
+        <service android:name=".NetworkLoggingService" />
+
         <receiver android:name=".NetworkLoggingReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />

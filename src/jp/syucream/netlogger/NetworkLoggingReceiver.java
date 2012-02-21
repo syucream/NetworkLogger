@@ -11,7 +11,7 @@ import android.util.Log;
 /**
  * ネットワークの状態変更を検出するブロードキャストレシーバ
  *
- * ネットワークの接続状態が変更された時、疎通確認とスイッチングを行います
+ * ネットワークの接続状態が変更された時、ログ記録サービスを起動します
  *
  */
 public class NetworkLoggingReceiver extends BroadcastReceiver {
@@ -23,6 +23,8 @@ public class NetworkLoggingReceiver extends BroadcastReceiver {
      */
     @Override
     public void onReceive( Context context, Intent intent ){
+        context.startService( new Intent( context, NetworkLoggingService.class ) );
+
         final String action = intent.getAction();
 
         // ネットワーク接続状況変更の検出
