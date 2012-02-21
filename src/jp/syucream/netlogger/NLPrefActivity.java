@@ -22,9 +22,8 @@ import android.widget.ProgressBar;
 public class NLPrefActivity extends PreferenceActivity {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.layout.pref);
+    protected void onCreate( Bundle savedInstanceState ){
+        super.onCreate( savedInstanceState );
+        addPreferencesFromResource( R.xml.pref );
     }
-
 }

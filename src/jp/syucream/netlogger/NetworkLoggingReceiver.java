@@ -28,16 +28,16 @@ public class NetworkLoggingReceiver extends BroadcastReceiver {
         String action = intent.getAction();
 
         // ネットワーク接続状況変更の検出
-        if(ConnectivityManager.CONNECTIVITY_ACTION.equals(action)){
-            ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if( ConnectivityManager.CONNECTIVITY_ACTION.equals( action ) ){
+            ConnectivityManager cm = ( ConnectivityManager )context.getSystemService( Context.CONNECTIVITY_SERVICE );
             NetworkInfo ni = cm.getActiveNetworkInfo();
 
-            if(ni == null){
+            if( ni == null ){
                 // エアプレーンモード移行時
                 return;
             }
             int type = ni.getType();
-            switch(type){
+            switch( type ){
                 case ConnectivityManager.TYPE_MOBILE:
                     // 3G 通信時
                     break;
@@ -49,5 +49,4 @@ public class NetworkLoggingReceiver extends BroadcastReceiver {
             }
         }
     }
-
 }

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-	<PreferenceCategory android:title="全般">
-		<CheckBoxPreference
-			android:key="nl-main"
-			android:title="本アプリを有効にする"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="全般">
+        <CheckBoxPreference
+            android:key="nl-main"
+            android:title="本アプリを有効にする"
             android:defaultValue="true" />
         <CheckBoxPreference
             android:key="notification"
             android:title="起動情報の通知を行う"
             android:summary="アプリ起動中、アプリの情報を通知バーに表示します"
             android:defaultValue="true" />
-	</PreferenceCategory>
+    </PreferenceCategory>
 
 </PreferenceScreen>
