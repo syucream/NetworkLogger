@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 
 /**
@@ -14,9 +15,6 @@ import android.net.NetworkInfo;
  *
  */
 public class NetworkLoggingReceiver extends BroadcastReceiver {
-    // デバッグ用
-    private static final boolean D = true;
-
 
     /**
      * intent を受け取ったときの処理
@@ -25,28 +23,41 @@ public class NetworkLoggingReceiver extends BroadcastReceiver {
      */
     @Override
     public void onReceive( Context context, Intent intent ){
-        String action = intent.getAction();
+        final String action = intent.getAction();
 
         // ネットワーク接続状況変更の検出
         if( ConnectivityManager.CONNECTIVITY_ACTION.equals( action ) ){
-            ConnectivityManager cm = ( ConnectivityManager )context.getSystemService( Context.CONNECTIVITY_SERVICE );
-            NetworkInfo ni = cm.getActiveNetworkInfo();
+            final ConnectivityManager cm = ( ConnectivityManager )context.getSystemService( Context.CONNECTIVITY_SERVICE );
+            final NetworkInfo ni = cm.getActiveNetworkInfo();
 
             if( ni == null ){
-                // エアプレーンモード移行時
+                onAirplaneMode();
                 return;
             }
-            int type = ni.getType();
+
+            final int type = ni.getType();
             switch( type ){
                 case ConnectivityManager.TYPE_MOBILE:
-                    // 3G 通信時
+                    on3GMode();
                     break;
                 case ConnectivityManager.TYPE_WIFI:
-                    // WiFi 通信時
+                    onWifiMode();
                     break;
                 default:
                     break;
             }
         }
+    }
+
+    private void onAirplaneMode(){
+        Log.d( "NetworkLoggingReceiver", "onAirplaneMode" );
+    }
+
+    private void on3GMode(){
+        Log.d( "NetworkLoggingReceiver", "on3GMode" );
+    }
+
+    private void onWifiMode(){
+        Log.d( "NetworkLoggingReceiver", "onWifiMode" );
     }
 }
