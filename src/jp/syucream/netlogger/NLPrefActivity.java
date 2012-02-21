@@ -25,7 +25,6 @@ public class NLPrefActivity extends PreferenceActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.layout.pref);
-        setContentView(R.layout.pref);
     }
 
 }
