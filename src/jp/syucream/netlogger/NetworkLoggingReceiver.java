@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
+import android.os.Bundle;
 
 
 /**
@@ -23,43 +23,44 @@ public class NetworkLoggingReceiver extends BroadcastReceiver {
      */
     @Override
     public void onReceive( Context context, Intent intent ){
-        context.startService( new Intent( context, NetworkLoggingService.class ) );
-
         final String action = intent.getAction();
 
         // ネットワーク接続状況変更の検出
+        NetworkLogUnit logUnit = null;
         if( ConnectivityManager.CONNECTIVITY_ACTION.equals( action ) ){
-            final ConnectivityManager cm = ( ConnectivityManager )context.getSystemService( Context.CONNECTIVITY_SERVICE );
-            final NetworkInfo ni = cm.getActiveNetworkInfo();
+            final NetworkInfo ni = getActiveNetworkInfo( context );
 
             if( ni == null ){
-                onAirplaneMode();
-                return;
-            }
+                logUnit = NetworkLogUnit.create( NetworkConnection.NONE );
+            }else{
+                switch( ni.getType() ){
+                    case ConnectivityManager.TYPE_MOBILE:
+                        logUnit = NetworkLogUnit.create( NetworkConnection.THREE_G );
+                        break;
 
-            final int type = ni.getType();
-            switch( type ){
-                case ConnectivityManager.TYPE_MOBILE:
-                    on3GMode();
-                    break;
-                case ConnectivityManager.TYPE_WIFI:
-                    onWifiMode();
-                    break;
-                default:
-                    break;
+                    case ConnectivityManager.TYPE_WIFI:
+                        logUnit = NetworkLogUnit.create( NetworkConnection.WIFI );
+                        break;
+                }
             }
+        }
+
+        if( logUnit != null ){
+            startLoggingService( context, logUnit );
         }
     }
 
-    private void onAirplaneMode(){
-        Log.d( "NetworkLoggingReceiver", "onAirplaneMode" );
+    private NetworkInfo getActiveNetworkInfo( Context context ){
+        final ConnectivityManager cm = ( ConnectivityManager )
+            context.getSystemService( Context.CONNECTIVITY_SERVICE );
+
+        return cm.getActiveNetworkInfo();
     }
 
-    private void on3GMode(){
-        Log.d( "NetworkLoggingReceiver", "on3GMode" );
-    }
+    private static void startLoggingService( Context context, NetworkLogUnit logUnit ){
+        final Intent intent = new Intent( context, NetworkLoggingService.class );
+        intent.putExtra( "LogUnit", logUnit );
 
-    private void onWifiMode(){
-        Log.d( "NetworkLoggingReceiver", "onWifiMode" );
+        context.startService( intent );
     }
 }
