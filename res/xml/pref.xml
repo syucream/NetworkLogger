@@ -17,9 +17,9 @@
             android:defaultValue="true" />
         <!-- 端末起動時にアプリを有効にするかどうか -->
         <CheckBoxPreference
-            android:key="@string/setup_key"
-            android:title="@string/setup"
-            android:summary="@string/setup_detail"
+            android:key="@string/autorun_key"
+            android:title="@string/autorun"
+            android:summary="@string/autorun_detail"
             android:defaultValue="true" />
     </PreferenceCategory>
 
