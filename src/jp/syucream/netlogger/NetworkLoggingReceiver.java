@@ -5,18 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 
 
 /**
  * ネットワークの状態変更を検出するブロードキャストレシーバ
  *
- * ネットワークの接続状態が変更された時、疎通確認とスイッチングを行います
+ * ネットワークの接続状態が変更された時、ログ記録サービスを起動します
  *
  */
 public class NetworkLoggingReceiver extends BroadcastReceiver {
-    // デバッグ用
-    private static final boolean D = true;
-
 
     /**
      * intent を受け取ったときの処理
@@ -25,28 +23,43 @@ public class NetworkLoggingReceiver extends BroadcastReceiver {
      */
     @Override
     public void onReceive( Context context, Intent intent ){
-        String action = intent.getAction();
+        final String action = intent.getAction();
 
         // ネットワーク接続状況変更の検出
+        NetworkLogUnit logUnit = null;
         if( ConnectivityManager.CONNECTIVITY_ACTION.equals( action ) ){
-            ConnectivityManager cm = ( ConnectivityManager )context.getSystemService( Context.CONNECTIVITY_SERVICE );
-            NetworkInfo ni = cm.getActiveNetworkInfo();
+            final NetworkInfo ni = getActiveNetworkInfo( context );
 
             if( ni == null ){
-                // エアプレーンモード移行時
-                return;
-            }
-            int type = ni.getType();
-            switch( type ){
-                case ConnectivityManager.TYPE_MOBILE:
-                    // 3G 通信時
-                    break;
-                case ConnectivityManager.TYPE_WIFI:
-                    // WiFi 通信時
-                    break;
-                default:
-                    break;
+                logUnit = NetworkLogUnit.create( NetworkConnection.NONE );
+            }else{
+                switch( ni.getType() ){
+                    case ConnectivityManager.TYPE_MOBILE:
+                        logUnit = NetworkLogUnit.create( NetworkConnection.THREE_G );
+                        break;
+
+                    case ConnectivityManager.TYPE_WIFI:
+                        logUnit = NetworkLogUnit.create( NetworkConnection.WIFI );
+                        break;
+                }
             }
         }
+
+        if( logUnit != null ){
+            startLoggingService( context, logUnit );
+        }
+    }
+
+    private NetworkInfo getActiveNetworkInfo( Context context ){
+        final ConnectivityManager cm = ( ConnectivityManager )
+            context.getSystemService( Context.CONNECTIVITY_SERVICE );
+
+        return cm.getActiveNetworkInfo();
+    }
+
+    private static void startLoggingService( Context context, NetworkLogUnit logUnit ){
+        context.startService( new NetworkLoggingIntent.Builder( context )
+                              .setNetworkLogUnit( logUnit )
+                              .build() );
     }
 }
