@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 設定周りのキー列挙用xml -->
+<resources>
+
+    <!-- 全般の設定 -->
+    <string name="nl_main_key">nl-main</string>
+    <string name="notification_key">notification</string>
+    <string name="autorun_key">setup</string>
+
+    <!-- ログの設定 -->
+    <string name="three_g_logging_key">three_g_logging</string>
+    <string name="wifi_logging_key">wifi_logging</string>
+    <string name="wimax_logging_key">wimax_logging</string>
+
+</resources>
