@@ -13,7 +13,8 @@ public class NetworkLoggingService extends Service {
 
     @Override
     public int onStartCommand( Intent intent, int flags, int startId ){
-        final NetworkLogUnit logUnit = intent.getParcelableExtra( "LogUnit" );
+        final NetworkLogUnit logUnit =
+            NetworkLoggingIntent.getNetworkLogUnit( intent );
         Log.d( "NetworkLoggingService", logUnit.toString() );
         return START_STICKY;
     }

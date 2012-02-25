@@ -58,9 +58,8 @@ public class NetworkLoggingReceiver extends BroadcastReceiver {
     }
 
     private static void startLoggingService( Context context, NetworkLogUnit logUnit ){
-        final Intent intent = new Intent( context, NetworkLoggingService.class );
-        intent.putExtra( "LogUnit", logUnit );
-
-        context.startService( intent );
+        context.startService( new NetworkLoggingIntent.Builder( context )
+                              .setNetworkLogUnit( logUnit )
+                              .build() );
     }
 }
