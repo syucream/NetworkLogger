@@ -2,15 +2,46 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="全般">
+    <!-- アプリ全般の設定（将来的に別画面に切り出す？）-->
+    <PreferenceCategory android:title="@string/general_category">
+        <!-- アプリの有効/無効 -->
         <CheckBoxPreference
-            android:key="nl-main"
-            android:title="本アプリを有効にする"
+            android:key="@string/nl_main_key"
+            android:title="@string/nl_main"
             android:defaultValue="true" />
+        <!-- 通知バーの使用の有無 -->
         <CheckBoxPreference
-            android:key="notification"
-            android:title="起動情報の通知を行う"
-            android:summary="アプリ起動中、アプリの情報を通知バーに表示します"
+            android:key="@string/notification_key"
+            android:title="@string/notification"
+            android:summary="@string/notification_detail"
+            android:defaultValue="true" />
+        <!-- 端末起動時にアプリを有効にするかどうか -->
+        <CheckBoxPreference
+            android:key="@string/setup_key"
+            android:title="@string/setup"
+            android:summary="@string/setup_detail"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+
+    <!-- ログの粒度を設定します -->
+    <PreferenceCategory android:title="@string/logging_category">
+        <!-- 3G通信のログを残すかどうか -->
+        <CheckBoxPreference
+            android:key="@string/three_g_logging_key"
+            android:title="@string/three_g_logging"
+            android:summary="@string/three_g_logging_detail"
+            android:defaultValue="true" />
+        <!-- WiFi 通信関連のログを残すかどうか -->
+        <CheckBoxPreference
+            android:key="@string/wifi_logging_key"
+            android:title="@string/wifi_logging"
+            android:summary="@string/wifi_logging_detail"
+            android:defaultValue="true" />
+        <!-- WiMAX(Xi) 通信関連のログを残すかどうか -->
+        <CheckBoxPreference
+            android:key="@string/wimax_logging_key"
+            android:title="@string/wimax_logging"
+            android:summary="@string/wimax_logging_detail"
             android:defaultValue="true" />
     </PreferenceCategory>
 

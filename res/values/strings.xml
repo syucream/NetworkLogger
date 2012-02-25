@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">NLPrefActivity</string>
+    <string name="app_name">Network Logger</string>
+
+    <!-- 全般設定画面の文字列 -->
+    <string name="general_category">全般</string>
+    <string name="nl_main">有効にする</string>
+    <string name="notification">通知を行う</string>
+    <string name="notification_detail">アプリの情報を通知バーに表示します</string>
+    <string name="setup">起動時に開始</string>
+    <string name="setup_detail">端末起動時に、アプリを有効にします</string>
+
+    <!-- ログの粒度に関する設定の文字列 -->
+    <string name="logging_category">ログ設定</string>
+    <string name="three_g_logging">3G通信のログ</string>
+    <string name="three_g_logging_detail">3G 通信関連のイベントのログを記録します</string>
+    <string name="wifi_logging">WiFi通信のログ</string>
+    <string name="wifi_logging_detail">WiFi 通信関連のイベントのログを記録します</string>
+    <string name="wimax_logging">WiMAX通信のログ</string>
+    <string name="wimax_logging_detail">WiMAX 通信関連のイベントのログを記録します</string>
+
+
+
 </resources>
