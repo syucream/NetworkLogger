@@ -7,8 +7,6 @@
     <string name="nl_main">Enable</string>
     <string name="notification">Notification</string>
     <string name="notification_detail">To notify while this app launches.</string>
-    <string name="autorun">Autorun</string>
-    <string name="autorun_detail">Enable this app when the phone starts.</string>
 
     <!-- ログの粒度に関する設定の文字列 -->
     <string name="logging_category">Logging configs</string>

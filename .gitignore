@@ -2,3 +2,4 @@
 /out/*
 /gen/*
 /local.properties
+*.DS_Store
