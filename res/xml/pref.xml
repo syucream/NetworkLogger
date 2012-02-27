@@ -15,12 +15,6 @@
             android:title="@string/notification"
             android:summary="@string/notification_detail"
             android:defaultValue="true" />
-        <!-- 端末起動時にアプリを有効にするかどうか -->
-        <CheckBoxPreference
-            android:key="@string/autorun_key"
-            android:title="@string/autorun"
-            android:summary="@string/autorun_detail"
-            android:defaultValue="true" />
     </PreferenceCategory>
 
     <!-- ログの粒度を設定します -->

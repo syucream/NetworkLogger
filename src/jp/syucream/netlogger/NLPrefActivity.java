@@ -35,7 +35,7 @@ public class NLPrefActivity extends PreferenceActivity {
      */
     public static void setNotification(Context context){
         NotificationManager nm = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification n = new Notification(R.drawable.icon, TITLE + " : " + MSG, System.currentTimeMillis());
+        Notification n = new Notification(R.drawable.appicon, TITLE + " : " + MSG, System.currentTimeMillis());
         PendingIntent intent = PendingIntent.getActivity(context, 0,
                 new Intent(context, NLPrefActivity.class), Intent.FLAG_ACTIVITY_NEW_TASK);
         n.setLatestEventInfo(context, TITLE, MSG, intent);
