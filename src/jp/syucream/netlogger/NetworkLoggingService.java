@@ -1,6 +1,6 @@
 package jp.syucream.netlogger;
 
-import android.app.Service;
+import android.app.IntentService;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
@@ -9,18 +9,16 @@ import android.util.Log;
 /**
  * ネットワークの状態変更をログに記録するサービス
  */
-public class NetworkLoggingService extends Service {
+public class NetworkLoggingService extends IntentService {
 
-    @Override
-    public int onStartCommand( Intent intent, int flags, int startId ){
-        final NetworkLogUnit logUnit =
-            NetworkLoggingIntent.getNetworkLogUnit( intent );
-        Log.d( "NetworkLoggingService", logUnit.toString() );
-        return START_STICKY;
+    public NetworkLoggingService(){
+        super( "NetworkLoggingService" ); // このクラスで使われるスレッド名
     }
 
     @Override
-    public IBinder onBind( Intent intent ){
-        return null;
+    public void onHandleIntent( Intent intent ){
+        final NetworkLogUnit logUnit =
+            NetworkLoggingIntent.getNetworkLogUnit( intent );
+        Log.d( "NetworkLoggingService", logUnit.toString() );
     }
 }
