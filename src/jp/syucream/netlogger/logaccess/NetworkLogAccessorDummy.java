@@ -28,7 +28,7 @@ public class NetworkLogAccessorDummy implements NetworkLogAccessor {
             super( new String[] { "dummy" }, ROW_NUM );
 
             final Object[] dummy = new Object[1];
-            for ( int i = 0; i < ROW_NUM; ++i ){
+            for( int i = 0; i < ROW_NUM; ++i ){
                 addRow( dummy );
             }
         }

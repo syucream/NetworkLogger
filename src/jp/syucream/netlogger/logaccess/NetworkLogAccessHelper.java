@@ -22,7 +22,7 @@ public final class NetworkLogAccessHelper {
 
 
     public static final NetworkLogUnit getLogUnitFromCursor( Cursor c ){
-        if (c instanceof NetworkLogAccessorDummy.DummyCursor){
+        if(c instanceof NetworkLogAccessorDummy.DummyCursor){
             return ((NetworkLogAccessorDummy.DummyCursor)c).getLogUnit();
         }
 
