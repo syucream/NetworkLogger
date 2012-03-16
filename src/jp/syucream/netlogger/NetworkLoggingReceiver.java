@@ -7,6 +7,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 
+import jp.syucream.netlogger.logaccess.NetworkConnection;
+import jp.syucream.netlogger.logaccess.NetworkLogUnit;
+
 
 /**
  * ネットワークの状態変更を検出するブロードキャストレシーバ

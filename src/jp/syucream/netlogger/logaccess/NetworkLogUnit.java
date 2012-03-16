@@ -1,4 +1,4 @@
-package jp.syucream.netlogger;
+package jp.syucream.netlogger.logaccess;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
+import jp.syucream.netlogger.logaccess.NetworkLogUnit;
+
 
 /**
  * ネットワークの状態変更をログに記録するサービス

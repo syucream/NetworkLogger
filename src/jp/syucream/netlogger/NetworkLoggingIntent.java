@@ -3,6 +3,8 @@ package jp.syucream.netlogger;
 import android.content.Context;
 import android.content.Intent;
 
+import jp.syucream.netlogger.logaccess.NetworkLogUnit;
+
 
 /**
  * NetworkLoggingReceiver/Service 間のやりとりをカプセル化するためのユーティリティ
