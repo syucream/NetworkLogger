@@ -1,5 +1,6 @@
 package jp.syucream.netlogger.logaccess;
 
+import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.util.Log;
 
@@ -19,6 +20,17 @@ public class NetworkLogAccessorDummy implements NetworkLogAccessor {
         return new DummyCursor();
     }
 
+    @Override
+    public NetworkLogUnit getLogUnit( Cursor cursor ){
+        final NetworkConnection[] connections = NetworkConnection.values();
+
+        // Cursor の現在位置から NetworkConnection を生成
+        final NetworkConnection conn =
+            connections[cursor.getPosition() % connections.length];
+
+        return NetworkLogUnit.create( conn );
+    }
+
 
     /* package */ class DummyCursor extends MatrixCursor {
 
@@ -31,15 +43,6 @@ public class NetworkLogAccessorDummy implements NetworkLogAccessor {
             for( int i = 0; i < ROW_NUM; ++i ){
                 addRow( dummy );
             }
-        }
-
-
-        public NetworkLogUnit getLogUnit(){
-            final NetworkConnection[] connections = NetworkConnection.values();
-
-            // Cursor の現在位置から NetworkConnection を生成
-            final NetworkConnection conn = connections[getPosition() % connections.length];
-            return NetworkLogUnit.create( conn );
         }
     }
 }

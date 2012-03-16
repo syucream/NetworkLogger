@@ -9,4 +9,6 @@ import android.database.Cursor;
 public interface NetworkLogAccessor {
     public void write( NetworkLogUnit logUnit );
     public Cursor read();
+
+    public NetworkLogUnit getLogUnit( Cursor cursor );
 }
