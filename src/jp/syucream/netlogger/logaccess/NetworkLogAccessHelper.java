@@ -8,7 +8,7 @@ import android.database.Cursor;
  */
 public final class NetworkLogAccessHelper {
 
-    private static final NetworkLogAccessor ACCESSOR = null;
+    private static final NetworkLogAccessor ACCESSOR = new NetworkLogAccessorDummy();
 
 
     private NetworkLogAccessHelper(){
@@ -22,6 +22,10 @@ public final class NetworkLogAccessHelper {
 
 
     public static final NetworkLogUnit getLogUnitFromCursor( Cursor c ){
+        if (c instanceof NetworkLogAccessorDummy.DummyCursor){
+            return ((NetworkLogAccessorDummy.DummyCursor)c).getLogUnit();
+        }
+
         throw new IllegalArgumentException();
     }
 }
